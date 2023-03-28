@@ -29,6 +29,5 @@ def wrapper_with_handler(func: callable, handler: callable):
 
 
 def isin_table(data: dict, table: list[dict]):
-    records = [item for item in table if item["updated_at"] == data["updated_at"]]
-
+    records = [item for item in table if item["update_at"] == data["update_at"]]
     return len(records) > 0

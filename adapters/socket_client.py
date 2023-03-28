@@ -19,18 +19,9 @@ class SocketClient(SocketClientAbstract):
         self.address = address
         self.port = port
 
-    # @sockets.raise_socket_error_dec(
-    #    custom_exc=exceptions.ConnectionErrorException,
-    #    msg="Ups...error has occurred while connecting to the server"
-    # )
     def connect(self):
         self.socket.connect((self.address, self.port))
-        self.logger.info(f"Socket connected to the Server: {self.address}:{self.port}")
 
-    # @sockets.raise_socket_error_dec(
-    #    custom_exc=exceptions.DataSendingErrorException,
-    #    msg="Ups...error has occurred while the data sending"
-    # )
     def send(
         self,
         http_options: dict,
@@ -41,15 +32,8 @@ class SocketClient(SocketClientAbstract):
 
         request_str = sockets.get_string_request(http_options, url_type)
 
-        # self.logger.info("Fetching in course...")
-        # self.logger.info(request_str)
-
         self.socket.sendall(request_str.encode())
 
-    # @sockets.raise_socket_error_dec(
-    #    custom_exc=exceptions.DataRecvErrorException,
-    #    msg="Ups...error has occurred while the data receiving"
-    # )
     def recv(self, until_complete=True) -> bytes:
         if not self.socket.getpeername():
             raise exceptions.ConnectionErrorException("Socket is not connected")
