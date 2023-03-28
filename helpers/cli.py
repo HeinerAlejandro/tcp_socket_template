@@ -3,7 +3,6 @@ from rich.console import Console
 
 
 def create_table(name: str, cols: list[str], rows: list[dict] = []) -> Table:
-
     table = Table(title=name)
 
     for col in cols:
@@ -30,12 +29,6 @@ def wrapper_with_handler(func: callable, handler: callable):
 
 
 def isin_table(data: dict, table: list[dict]):
-
-    records = [
-        item for item in table
-        if item["updated_at"] == data["updated_at"]
-    ]
+    records = [item for item in table if item["updated_at"] == data["updated_at"]]
 
     return len(records) > 0
-
-

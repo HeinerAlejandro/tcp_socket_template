@@ -11,14 +11,15 @@ def raise_socket_error_dec(custom_exc: Exception, msg: str):
                 func(*args, **kwargs)
             except socket.error:
                 raise custom_exc(msg)
+
         return wrapper
+
     return raise_socket_error
 
 
 def get_string_request(http_options: dict, url_type: str):
     return "{http_verb}+{url_type}+{path}+{query_params}".format(
-        **http_options,
-        url_type=url_type
+        **http_options, url_type=url_type
     )
 
 

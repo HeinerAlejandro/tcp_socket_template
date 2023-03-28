@@ -2,14 +2,10 @@ from abc import ABC, abstractmethod
 import socket
 from typing import Any
 from dataclasses import field
-from ipaddress import (
-    IPv4Address,
-    IPv6Address
-)
+from ipaddress import IPv4Address, IPv6Address
 
 
 class SocketClientAbstract(ABC):
-
     @abstractmethod
     def connect(self):
         ...
@@ -31,6 +27,4 @@ class SocketClientAbstract(ABC):
         ...
 
 
-__all__ = [
-    "SocketClientAbstract"
-]
+__all__ = ["SocketClientAbstract"]
